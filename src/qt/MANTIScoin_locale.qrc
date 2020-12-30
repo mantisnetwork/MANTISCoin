@@ -1,0 +1,18 @@
+<!DOCTYPE RCC><RCC version="1.0">
+    <qresource prefix="/translations">
+        <file alias="de">locale/MANTIScoin_de.qm</file>
+        <file alias="en">locale/MANTIScoin_en.qm</file>
+        <file alias="en_US">locale/MANTIScoin_en_US.qm</file>
+        <file alias="es">locale/MANTIScoin_es.qm</file>
+        <file alias="es_ES">locale/MANTIScoin_es_ES.qm</file>
+        <file alias="fr_FR">locale/MANTIScoin_fr_FR.qm</file>
+        <file alias="hr_HR">locale/MANTIScoin_hr_HR.qm</file>
+        <file alias="it">locale/MANTIScoin_it.qm</file>
+        <file alias="ko_KR">locale/MANTIScoin_ko_KR.qm</file>
+        <file alias="nl">locale/MANTIScoin_nl.qm</file>
+        <file alias="pl">locale/MANTIScoin_pl.qm</file>
+        <file alias="ru">locale/MANTIScoin_ru.qm</file>
+        <file alias="tr">locale/MANTIScoin_tr.qm</file>
+        <file alias="zh_CN">locale/MANTIScoin_zh_CN.qm</file>
+    </qresource>
+</RCC>

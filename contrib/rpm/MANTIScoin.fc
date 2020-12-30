@@ -1,0 +1,8 @@
+/usr/bin/MANTIScoin-cli		--	gen_context(system_u:object_r:MANTIScoin_exec_t,s0)
+/usr/sbin/MANTIScoind		--	gen_context(system_u:object_r:MANTIScoin_exec_t,s0)
+/usr/lib(64)?/MANTIScoin/MANTIScoind		--	gen_context(system_u:object_r:MANTIScoin_exec_t,s0)
+
+/etc/MANTIScoin(/.*)?		gen_context(system_u:object_r:MANTIScoin_conf_t,s0)
+/var/lib/MANTIScoin(/.*)?		gen_context(system_u:object_r:MANTIScoin_var_lib_t,s0)
+
+(/var)?/run/MANTIScoind(/.*)?   gen_context(system_u:object_r:MANTIScoin_var_run_t,s0)

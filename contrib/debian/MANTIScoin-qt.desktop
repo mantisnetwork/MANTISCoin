@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Name=MANTISCoin
+Comment=MANTISCoin P2P Cryptocurrency
+Comment[fr]=MANTISCoin, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=MANTISCoin, eşten eşe kriptografik sanal para birimi
+Exec=MANTIScoin-qt %u
+Terminal=false
+Type=Application
+Icon=MANTIScoin128
+MimeType=x-scheme-handler/MANTIScoin;
+Categories=Office;Finance;
+StartupWMClass=MANTISCoin-qt

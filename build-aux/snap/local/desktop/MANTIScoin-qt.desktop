@@ -1,0 +1,15 @@
+# http://standards.freedesktop.org/desktop-entry-spec/desktop-entry-spec-1.0.html
+
+[Desktop Entry]
+Encoding=UTF-8
+Name=MANTISCoin
+Comment=MANTISCoin QT main network
+GenericName=MANTISCoin Digital Currency QT client main network
+Exec=MANTIScoin-core.qt %u
+Terminal=false
+Type=Application
+Icon=${SNAP}/share/pixmaps/MANTIScoin.png
+MimeType=x-scheme-handler/MANTIScoin;
+Categories=X-Office;X-Finance;
+Keywords=internet;MANTIScoin;zmntis;mntis;core;wallet;qt;main;snap;launchpad;crypto;digital;currency;coin;token;zerocoin;
+Version=1.0

@@ -1,0 +1,15 @@
+QT_TS = \
+  qt/locale/MANTIScoin_de.ts \
+  qt/locale/MANTIScoin_en.ts \
+  qt/locale/MANTIScoin_en_US.ts \
+  qt/locale/MANTIScoin_es.ts \
+  qt/locale/MANTIScoin_es_ES.ts \
+  qt/locale/MANTIScoin_fr_FR.ts \
+  qt/locale/MANTIScoin_hr_HR.ts \
+  qt/locale/MANTIScoin_it.ts \
+  qt/locale/MANTIScoin_ko_KR.ts \
+  qt/locale/MANTIScoin_nl.ts \
+  qt/locale/MANTIScoin_pl.ts \
+  qt/locale/MANTIScoin_ru.ts \
+  qt/locale/MANTIScoin_tr.ts \
+  qt/locale/MANTIScoin_zh_CN.ts

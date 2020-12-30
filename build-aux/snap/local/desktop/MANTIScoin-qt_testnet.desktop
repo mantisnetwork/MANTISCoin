@@ -1,0 +1,15 @@
+# http://standards.freedesktop.org/desktop-entry-spec/desktop-entry-spec-1.0.html
+
+[Desktop Entry]
+Encoding=UTF-8
+Name=MANTISCoin
+Comment=MANTISCoin QT test network
+GenericName=MANTISCoin Digital Currency QT client testnet network
+Exec=MANTIScoin-core.qt-testnet %u
+Terminal=false
+Type=Application
+Icon=${SNAP}/share/pixmaps/MANTIScoin_testnet.png
+MimeType=x-scheme-handler/mntis;
+Categories=X-Office;X-Finance;
+Keywords=internet;MANTIScoin;zmntis;tbc;core;wallet;qt;testnet;snap;launchpad;crypto;digital;currency;coin;token;zerocoin;
+Version=1.0

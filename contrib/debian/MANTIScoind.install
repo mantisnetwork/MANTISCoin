@@ -1,0 +1,3 @@
+usr/local/bin/MANTIScoind usr/bin
+usr/local/bin/MANTIScoin-cli usr/bin
+debian/examples/MANTIScoin.conf etc/MANTIScoin

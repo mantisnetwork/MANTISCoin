@@ -1,0 +1,710 @@
+# Copyright (c) 2013-2016 The Bitcoin Core developers
+# Distributed under the MIT software license, see the accompanying
+# file COPYING or http://www.opensource.org/licenses/mit-license.php.
+
+bin_PROGRAMS += qt/MANTIScoin-qt
+EXTRA_LIBRARIES += qt/libbitcoinqt.a
+
+# MANTIScoin qt core #
+include Makefile.qt_locale.include
+
+QT_FORMS_UI = \
+  qt/forms/addressbookpage.ui \
+  qt/forms/askpassphrasedialog.ui \
+  qt/forms/coincontroldialog.ui \
+  qt/forms/editaddressdialog.ui \
+  qt/forms/helpmessagedialog.ui \
+  qt/forms/intro.ui \
+  qt/forms/openuridialog.ui \
+  qt/forms/optionsdialog.ui \
+  qt/forms/rpcconsole.ui \
+  qt/MANTIScoin/forms/loadingdialog.ui \
+  qt/MANTIScoin/forms/snackbar.ui \
+  qt/MANTIScoin/forms/navmenuwidget.ui \
+  qt/MANTIScoin/forms/lockunlock.ui \
+  qt/MANTIScoin/forms/expandablebutton.ui \
+  qt/MANTIScoin/forms/receivedialog.ui \
+  qt/MANTIScoin/forms/topbar.ui \
+  qt/MANTIScoin/forms/txrow.ui \
+  qt/MANTIScoin/forms/dashboardwidget.ui \
+  qt/MANTIScoin/forms/addresslabelrow.ui \
+  qt/MANTIScoin/forms/contactdropdownrow.ui \
+  qt/MANTIScoin/forms/mninfodialog.ui \
+  qt/MANTIScoin/forms/optionbutton.ui \
+  qt/MANTIScoin/forms/masternodewizarddialog.ui \
+  qt/MANTIScoin/forms/mnrow.ui \
+  qt/MANTIScoin/forms/masternodeswidget.ui \
+  qt/MANTIScoin/forms/myaddressrow.ui \
+  qt/MANTIScoin/forms/csrow.ui \
+  qt/MANTIScoin/forms/sendchangeaddressdialog.ui \
+  qt/MANTIScoin/forms/sendconfirmdialog.ui \
+  qt/MANTIScoin/forms/sendcustomfeedialog.ui \
+  qt/MANTIScoin/forms/sendchangeaddressdialog.ui \
+  qt/MANTIScoin/forms/sendmultirow.ui \
+  qt/MANTIScoin/forms/send.ui \
+  qt/MANTIScoin/forms/addnewaddressdialog.ui \
+  qt/MANTIScoin/forms/addnewcontactdialog.ui \
+  qt/MANTIScoin/forms/requestdialog.ui \
+  qt/MANTIScoin/forms/receivewidget.ui \
+  qt/MANTIScoin/forms/tooltipmenu.ui \
+  qt/MANTIScoin/forms/addresseswidget.ui \
+  qt/MANTIScoin/forms/defaultdialog.ui \
+  qt/MANTIScoin/forms/coldstakingwidget.ui \
+  qt/MANTIScoin/settings/forms/settingsbackupwallet.ui \
+  qt/MANTIScoin/settings/forms/settingsexportcsv.ui \
+  qt/MANTIScoin/settings/forms/settingsbittoolwidget.ui \
+  qt/MANTIScoin/settings/forms/settingsconsolewidget.ui \
+  qt/MANTIScoin/settings/forms/settingsdisplayoptionswidget.ui \
+  qt/MANTIScoin/settings/forms/settingsfaqwidget.ui \
+  qt/MANTIScoin/settings/forms/settingsinformationwidget.ui \
+  qt/MANTIScoin/settings/forms/settingsmainoptionswidget.ui \
+  qt/MANTIScoin/settings/forms/settingsmultisenddialog.ui \
+  qt/MANTIScoin/settings/forms/settingsmultisendwidget.ui \
+  qt/MANTIScoin/settings/forms/settingssignmessagewidgets.ui \
+  qt/MANTIScoin/settings/forms/settingswalletoptionswidget.ui \
+  qt/MANTIScoin/settings/forms/settingswalletrepairwidget.ui \
+  qt/MANTIScoin/settings/forms/settingswidget.ui \
+  qt/MANTIScoin/forms/welcomecontentwidget.ui \
+  qt/MANTIScoin/forms/splash.ui
+
+QT_MOC_CPP = \
+  qt/moc_addressbookpage.cpp \
+  qt/moc_addresstablemodel.cpp \
+  qt/moc_askpassphrasedialog.cpp \
+  qt/moc_bantablemodel.cpp \
+  qt/moc_bitcoinaddressvalidator.cpp \
+  qt/MANTIScoin/moc_MANTIScoingui.cpp \
+  qt/moc_bitcoinunits.cpp \
+  qt/moc_clientmodel.cpp \
+  qt/moc_coincontroldialog.cpp \
+  qt/moc_coincontroltreewidget.cpp \
+  qt/moc_csvmodelwriter.cpp \
+  qt/moc_editaddressdialog.cpp \
+  qt/moc_guiutil.cpp \
+  qt/moc_intro.cpp \
+  qt/moc_macdockiconhandler.cpp \
+  qt/moc_macnotificationhandler.cpp \
+  qt/moc_notificator.cpp \
+  qt/moc_openuridialog.cpp \
+  qt/moc_optionsdialog.cpp \
+  qt/moc_optionsmodel.cpp \
+  qt/moc_peertablemodel.cpp \
+  qt/moc_paymentserver.cpp \
+  qt/moc_qvalidatedlineedit.cpp \
+  qt/moc_qvaluecombobox.cpp \
+  qt/moc_recentrequeststablemodel.cpp \
+  qt/moc_rpcconsole.cpp \
+  qt/moc_trafficgraphwidget.cpp \
+  qt/moc_transactionfilterproxy.cpp \
+  qt/moc_transactiontablemodel.cpp \
+  qt/moc_utilitydialog.cpp \
+  qt/moc_walletmodel.cpp \
+  qt/MANTIScoin/moc_loadingdialog.cpp \
+  qt/MANTIScoin/moc_pwidget.cpp \
+  qt/MANTIScoin/moc_focuseddialog.cpp \
+  qt/MANTIScoin/moc_snackbar.cpp \
+  qt/MANTIScoin/moc_navmenuwidget.cpp \
+  qt/MANTIScoin/moc_lockunlock.cpp \
+  qt/MANTIScoin/moc_expandablebutton.cpp \
+  qt/MANTIScoin/moc_furabstractlistitemdelegate.cpp \
+  qt/MANTIScoin/moc_receivedialog.cpp \
+  qt/MANTIScoin/moc_pfborderimage.cpp \
+  qt/MANTIScoin/moc_topbar.cpp \
+  qt/MANTIScoin/moc_txrow.cpp \
+  qt/MANTIScoin/moc_dashboardwidget.cpp \
+  qt/MANTIScoin/moc_addresslabelrow.cpp \
+  qt/MANTIScoin/moc_contactdropdownrow.cpp \
+  qt/MANTIScoin/moc_mninfodialog.cpp \
+  qt/MANTIScoin/moc_optionbutton.cpp \
+  qt/MANTIScoin/moc_coldstakingmodel.cpp \
+  qt/MANTIScoin/moc_mnmodel.cpp \
+  qt/MANTIScoin/moc_masternodewizarddialog.cpp \
+  qt/MANTIScoin/moc_mnrow.cpp \
+  qt/MANTIScoin/moc_masternodeswidget.cpp \
+  qt/MANTIScoin/moc_myaddressrow.cpp \
+  qt/MANTIScoin/moc_csrow.cpp \
+  qt/MANTIScoin/moc_contactsdropdown.cpp \
+  qt/MANTIScoin/moc_sendchangeaddressdialog.cpp \
+  qt/MANTIScoin/moc_sendconfirmdialog.cpp \
+  qt/MANTIScoin/moc_sendcustomfeedialog.cpp \
+  qt/MANTIScoin/moc_sendchangeaddressdialog.cpp \
+  qt/MANTIScoin/moc_sendmultirow.cpp \
+  qt/MANTIScoin/moc_send.cpp \
+  qt/MANTIScoin/moc_addnewaddressdialog.cpp \
+  qt/MANTIScoin/moc_addnewcontactdialog.cpp \
+  qt/MANTIScoin/moc_requestdialog.cpp \
+  qt/MANTIScoin/moc_receivewidget.cpp \
+  qt/MANTIScoin/moc_tooltipmenu.cpp \
+  qt/MANTIScoin/moc_addresseswidget.cpp \
+  qt/MANTIScoin/moc_defaultdialog.cpp \
+  qt/MANTIScoin/moc_coldstakingwidget.cpp \
+  qt/MANTIScoin/settings/moc_settingsbackupwallet.cpp \
+  qt/MANTIScoin/settings/moc_settingsexportcsv.cpp \
+  qt/MANTIScoin/settings/moc_settingsbittoolwidget.cpp \
+  qt/MANTIScoin/settings/moc_settingsconsolewidget.cpp \
+  qt/MANTIScoin/settings/moc_settingsdisplayoptionswidget.cpp \
+  qt/MANTIScoin/settings/moc_settingsfaqwidget.cpp \
+  qt/MANTIScoin/settings/moc_settingsinformationwidget.cpp \
+  qt/MANTIScoin/settings/moc_settingsmainoptionswidget.cpp \
+  qt/MANTIScoin/settings/moc_settingsmultisenddialog.cpp \
+  qt/MANTIScoin/settings/moc_settingsmultisendwidget.cpp \
+  qt/MANTIScoin/settings/moc_settingssignmessagewidgets.cpp \
+  qt/MANTIScoin/settings/moc_settingswalletoptionswidget.cpp \
+  qt/MANTIScoin/settings/moc_settingswalletrepairwidget.cpp \
+  qt/MANTIScoin/settings/moc_settingswidget.cpp \
+  qt/MANTIScoin/moc_welcomecontentwidget.cpp \
+  qt/MANTIScoin/moc_splash.cpp
+
+BITCOIN_MM = \
+  qt/macdockiconhandler.mm \
+  qt/macnotificationhandler.mm
+
+QT_MOC = \
+  qt/MANTIScoin.moc \
+  qt/intro.moc \
+  qt/rpcconsole.moc \
+  qt/MANTIScoin/settings/moc_settingsconsolewidget.cpp
+
+QT_QRC_CPP = qt/qrc_MANTIScoin.cpp
+QT_QRC = qt/MANTIScoin.qrc
+QT_QRC_LOCALE_CPP = qt/qrc_MANTIScoin_locale.cpp
+QT_QRC_LOCALE = qt/MANTIScoin_locale.qrc
+
+PROTOBUF_CC = qt/paymentrequest.pb.cc
+PROTOBUF_H = qt/paymentrequest.pb.h
+PROTOBUF_PROTO = qt/paymentrequest.proto
+
+BITCOIN_QT_H = \
+  qt/addressbookpage.h \
+  qt/addresstablemodel.h \
+  qt/askpassphrasedialog.h \
+  qt/bantablemodel.h \
+  qt/bitcoinaddressvalidator.h \
+  qt/MANTIScoin/MANTIScoingui.h \
+  qt/bitcoinunits.h \
+  qt/clientmodel.h \
+  qt/coincontroldialog.h \
+  qt/coincontroltreewidget.h \
+  qt/csvmodelwriter.h \
+  qt/editaddressdialog.h \
+  qt/guiconstants.h \
+  qt/guiutil.h \
+  qt/intro.h \
+  qt/macdockiconhandler.h \
+  qt/macnotificationhandler.h \
+  qt/networkstyle.h \
+  qt/notificator.h \
+  qt/openuridialog.h \
+  qt/optionsdialog.h \
+  qt/optionsmodel.h \
+  qt/paymentrequestplus.h \
+  qt/paymentserver.h \
+  qt/peertablemodel.h \
+  qt/platformstyle.h \
+  qt/qvalidatedlineedit.h \
+  qt/qvaluecombobox.h \
+  qt/recentrequeststablemodel.h \
+  qt/rpcconsole.h \
+  qt/trafficgraphwidget.h \
+  qt/transactionfilterproxy.h \
+  qt/transactionrecord.h \
+  qt/transactiontablemodel.h \
+  qt/utilitydialog.h \
+  qt/walletmodel.h \
+  qt/walletmodeltransaction.h \
+  qt/MANTIScoin/prunnable.h \
+  qt/MANTIScoin/pfborderimage.h \
+  qt/MANTIScoin/loadingdialog.h \
+  qt/winshutdownmonitor.h \
+  qt/MANTIScoin/pwidget.h \
+  qt/MANTIScoin/focuseddialog.h \
+  qt/MANTIScoin/guitransactionsutils.h \
+  qt/MANTIScoin/snackbar.h \
+  qt/MANTIScoin/navmenuwidget.h \
+  qt/MANTIScoin/lockunlock.h \
+  qt/MANTIScoin/receivedialog.h \
+  qt/MANTIScoin/furlistrow.h \
+  qt/MANTIScoin/furabstractlistitemdelegate.h \
+  qt/MANTIScoin/txviewholder.h \
+  qt/MANTIScoin/qtutils.h \
+  qt/MANTIScoin/expandablebutton.h \
+  qt/MANTIScoin/topbar.h \
+  qt/MANTIScoin/txrow.h \
+  qt/MANTIScoin/addressholder.h \
+  qt/MANTIScoin/addressfilterproxymodel.h \
+  qt/MANTIScoin/dashboardwidget.h \
+  qt/MANTIScoin/addresslabelrow.h \
+  qt/MANTIScoin/contactdropdownrow.h \
+  qt/MANTIScoin/mninfodialog.h \
+  qt/MANTIScoin/optionbutton.h \
+  qt/MANTIScoin/coldstakingmodel.h \
+  qt/MANTIScoin/mnmodel.h \
+  qt/MANTIScoin/masternodewizarddialog.h \
+  qt/MANTIScoin/mnrow.h \
+  qt/MANTIScoin/masternodeswidget.h \
+  qt/MANTIScoin/myaddressrow.h \
+  qt/MANTIScoin/csrow.h \
+  qt/MANTIScoin/contactsdropdown.h \
+  qt/MANTIScoin/sendchangeaddressdialog.h \
+  qt/MANTIScoin/sendconfirmdialog.h \
+  qt/MANTIScoin/sendcustomfeedialog.h \
+  qt/MANTIScoin/sendchangeaddressdialog.h \
+  qt/MANTIScoin/sendmultirow.h \
+  qt/MANTIScoin/send.h \
+  qt/MANTIScoin/addnewaddressdialog.h \
+  qt/MANTIScoin/addnewcontactdialog.h \
+  qt/MANTIScoin/requestdialog.h \
+  qt/MANTIScoin/receivewidget.h \
+  qt/MANTIScoin/tooltipmenu.h \
+  qt/MANTIScoin/addresseswidget.h \
+  qt/MANTIScoin/defaultdialog.h \
+  qt/MANTIScoin/coldstakingwidget.h \
+  qt/MANTIScoin/settings/settingsbackupwallet.h \
+  qt/MANTIScoin/settings/settingsexportcsv.h \
+  qt/MANTIScoin/settings/settingsbittoolwidget.h \
+  qt/MANTIScoin/settings/settingsconsolewidget.h \
+  qt/MANTIScoin/settings/settingsdisplayoptionswidget.h \
+  qt/MANTIScoin/settings/settingsfaqwidget.h \
+  qt/MANTIScoin/settings/settingsinformationwidget.h \
+  qt/MANTIScoin/settings/settingsmainoptionswidget.h \
+  qt/MANTIScoin/settings/settingsmultisenddialog.h \
+  qt/MANTIScoin/settings/settingsmultisendwidget.h \
+  qt/MANTIScoin/settings/settingssignmessagewidgets.h \
+  qt/MANTIScoin/settings/settingswalletoptionswidget.h \
+  qt/MANTIScoin/settings/settingswalletrepairwidget.h \
+  qt/MANTIScoin/settings/settingswidget.h \
+  qt/MANTIScoin/welcomecontentwidget.h \
+  qt/MANTIScoin/splash.h
+
+RES_ICONS = \
+  qt/res/icons/bitcoin.ico \
+  qt/res/icons/bitcoin.png \
+  qt/res/icons/bitcoin_testnet.ico \
+  qt/res/icons/bitcoin_testnet.png \
+  qt/res/icons/bitcoin_regtest.png \
+  qt/res/icons/lock_closed.png \
+  qt/res/icons/lock_open.png \
+  qt/res/icons/ic-transaction-received.png \
+  qt/res/icons/ic-transaction-mint.png \
+  qt/res/icons/ic-transaction-sent.png \
+  qt/res/icons/ic-transaction-staked.png \
+  qt/MANTIScoin/res/img/bg-dashboard-banner.png \
+  qt/MANTIScoin/res/img/bg-multi-number-dark.png \
+  qt/MANTIScoin/res/img/ic-check-locked.png \
+  qt/MANTIScoin/res/img/ic-nav-address.png \
+  qt/MANTIScoin/res/img/ic-update.png \
+  qt/MANTIScoin/res/img/bg-multi-number.png \
+  qt/MANTIScoin/res/img/ic-check-mint-off.png \
+  qt/MANTIScoin/res/img/ic-nav-cold-staking.png \
+  qt/MANTIScoin/res/img/ic-nav-cold-staking-active.png \
+  qt/MANTIScoin/res/img/ic-nav-dashboard-active.png \
+  qt/MANTIScoin/res/img/ic-wallet-status-locked.png \
+  qt/MANTIScoin/res/img/bg-splash.png \
+  qt/MANTIScoin/res/img/ic-check-mint.png \
+  qt/MANTIScoin/res/img/ic-nav-dashboard-hover.png \
+  qt/MANTIScoin/res/img/ic-wallet-status-staking.png \
+  qt/MANTIScoin/res/img/ic-check-peers-off.png \
+  qt/MANTIScoin/res/img/ic-nav-dashboard.png \
+  qt/MANTIScoin/res/img/ic-wallet-status-unlocked.png \
+  qt/MANTIScoin/res/img/ic-check-peers.png \
+  qt/MANTIScoin/res/img/ic-nav-master-active.png \
+  qt/MANTIScoin/res/img/ic-watch-password-white.png \
+  qt/MANTIScoin/res/img/bg-welcome-container.jpg \
+  qt/MANTIScoin/res/img/bg-welcome-container.png \
+  qt/MANTIScoin/res/img/bg-welcome-container@2x.png \
+  qt/MANTIScoin/res/img/bg-welcome-container@3x.png \
+  qt/MANTIScoin/res/img/ic-check-staking-off.png \
+  qt/MANTIScoin/res/img/ic-nav-master-hover.png \
+  qt/MANTIScoin/res/img/ic-watch-password.png \
+  qt/MANTIScoin/res/img/bg-welcome.jpg \
+  qt/MANTIScoin/res/img/bg-welcome.png \
+  qt/MANTIScoin/res/img/ic-check-staking.png \
+  qt/MANTIScoin/res/img/ic-nav-master.png \
+  qt/MANTIScoin/res/img/img-dashboard-banner.jpg \
+  qt/MANTIScoin/res/img/btn-radio-active.png \
+  qt/MANTIScoin/res/img/ic-check-sync-off.png \
+  qt/MANTIScoin/res/img/ic-nav-privacy-active.png \
+  qt/MANTIScoin/res/img/img-empty-contacts.png \
+  qt/MANTIScoin/res/img/btn-radio-off.png \
+  qt/MANTIScoin/res/img/ic-nav-privacy-hover.png \
+  qt/MANTIScoin/res/img/img-empty-dark-contacts.png \
+  qt/MANTIScoin/res/img/ic-contact-arrow-down.png \
+  qt/MANTIScoin/res/img/ic-contact-arrow-down-white.png \
+  qt/MANTIScoin/res/img/ic-check-sync.png \
+  qt/MANTIScoin/res/img/ic-check-faq.png \
+  qt/MANTIScoin/res/img/ic-nav-privacy.png \
+  qt/MANTIScoin/res/img/img-empty-dark-error.png \
+  qt/MANTIScoin/res/img/ic-add-label.png \
+  qt/MANTIScoin/res/img/ic-pending.png \
+  qt/MANTIScoin/res/img/ic-check-theme-dark.png \
+  qt/MANTIScoin/res/img/ic-nav-receive-active.png \
+  qt/MANTIScoin/res/img/img-empty-dark-masternode.png \
+  qt/MANTIScoin/res/img/ic-add-liliac.png \
+  qt/MANTIScoin/res/img/ic-check-theme-light.png \
+  qt/MANTIScoin/res/img/ic-nav-receive-hover.png \
+  qt/MANTIScoin/res/img/img-empty-dark-multisend.png \
+  qt/MANTIScoin/res/img/ic-add-purple.png \
+  qt/MANTIScoin/res/img/ic-check-white.png \
+  qt/MANTIScoin/res/img/ic-nav-receive.png \
+  qt/MANTIScoin/res/img/img-empty-dark-peers.png \
+  qt/MANTIScoin/res/img/ic-add.png \
+  qt/MANTIScoin/res/img/ic-check.png \
+  qt/MANTIScoin/res/img/ic-nav-send-active.png \
+  qt/MANTIScoin/res/img/img-empty-dark-staking-off.png \
+  qt/MANTIScoin/res/img/img-empty-dark-staking-on.png \
+  qt/MANTIScoin/res/img/ic-address-book-grey.png \
+  qt/MANTIScoin/res/img/ic-chevron-left.png \
+  qt/MANTIScoin/res/img/ic-nav-send-hover.png \
+  qt/MANTIScoin/res/img/img-empty-dark-transactions.png \
+  qt/MANTIScoin/res/img/ic-address-book-white.png \
+  qt/MANTIScoin/res/img/ic-chevron-right.png \
+  qt/MANTIScoin/res/img/ic-nav-send.png \
+  qt/MANTIScoin/res/img/img-empty-error.png \
+  qt/MANTIScoin/res/img/ic-address-book.png \
+  qt/MANTIScoin/res/img/ic-clear-liliac.png \
+  qt/MANTIScoin/res/img/ic-nav-settings-active.png \
+  qt/MANTIScoin/res/img/img-empty-masternode.png \
+  qt/MANTIScoin/res/img/ic-address-send-white.png \
+  qt/MANTIScoin/res/img/ic-clear-purple.png \
+  qt/MANTIScoin/res/img/ic-nav-settings-hover.png \
+  qt/MANTIScoin/res/img/img-empty-multisend.png \
+  qt/MANTIScoin/res/img/ic-address-send.png \
+  qt/MANTIScoin/res/img/ic-close-white.png \
+  qt/MANTIScoin/res/img/ic-nav-settings.png \
+  qt/MANTIScoin/res/img/img-empty-peers.png \
+  qt/MANTIScoin/res/img/img-empty-privacy.png \
+  qt/MANTIScoin/res/img/img-empty-privacy-dark.png \
+  qt/MANTIScoin/res/img/ic-arrow-drop-down-white.png \
+  qt/MANTIScoin/res/img/ic-close.png \
+  qt/MANTIScoin/res/img/ic-radio-liliac-on.png \
+  qt/MANTIScoin/res/img/img-empty-staking-off.png \
+  qt/MANTIScoin/res/img/ic-arrow-drop-down.png \
+  qt/MANTIScoin/res/img/ic-coin-mntis.png \
+  qt/MANTIScoin/res/img/ic-receive-off.png \
+  qt/MANTIScoin/res/img/img-empty-staking-on.png \
+  qt/MANTIScoin/res/img/ic-arrow-drop-up-white.png \
+  qt/MANTIScoin/res/img/ic-receive-on.png \
+  qt/MANTIScoin/res/img/img-empty-transactions.png \
+  qt/MANTIScoin/res/img/ic-arrow-drop-up.png \
+  qt/MANTIScoin/res/img/ic-received.png \
+  qt/MANTIScoin/res/img/img-logo-MANTIScoin.png \
+  qt/MANTIScoin/res/img/ic-arrow-drop-white-down.png \
+  qt/MANTIScoin/res/img/ic-combo-box.png \
+  qt/MANTIScoin/res/img/ic-send.png \
+  qt/MANTIScoin/res/img/img-logo-MANTIScoin@2x.png \
+  qt/MANTIScoin/res/img/ic-arrow-purple-down.png \
+  qt/MANTIScoin/res/img/ic-connect.png \
+  qt/MANTIScoin/res/img/ic-submenu-lock.png \
+  qt/MANTIScoin/res/img/img-logo-MANTIScoin@3x.png \
+  qt/MANTIScoin/res/img/img-logo-MANTIScoin.png \
+  qt/MANTIScoin/res/img/ic-arrow-right-white.png \
+  qt/MANTIScoin/res/img/ic-arrow-left-white.png \
+  qt/MANTIScoin/res/img/ic-arrow-left.png \
+  qt/MANTIScoin/res/img/ic-copy-liliac.png \
+  qt/MANTIScoin/res/img/ic-submenu-staking.png \
+  qt/MANTIScoin/res/img/img-nav-logo-MANTIScoin.png \
+  qt/MANTIScoin/res/img/ic-arrow-right.png \
+  qt/MANTIScoin/res/img/ic-copy.png \
+  qt/MANTIScoin/res/img/ic-copy-big.png \
+  qt/MANTIScoin/res/img/ic-copy-big-white.png \
+  qt/MANTIScoin/res/img/ic-submenu-unlock.png \
+  qt/MANTIScoin/res/img/img-nav-logo.png \
+  qt/MANTIScoin/res/img/ic-arrow-white-left.png \
+  qt/MANTIScoin/res/img/ic-exit.png \
+  qt/MANTIScoin/res/img/ic-switch-liliac-on.png \
+  qt/MANTIScoin/res/img/img-nav-logo.png \
+  qt/MANTIScoin/res/img/ic-arrow-white-right.png \
+  qt/MANTIScoin/res/img/ic-expand.png \
+  qt/MANTIScoin/res/img/ic-switch-off.png \
+  qt/MANTIScoin/res/img/img-qr-test-big.png \
+  qt/MANTIScoin/res/img/ic-check-active.png \
+  qt/MANTIScoin/res/img/ic-folder.png \
+  qt/MANTIScoin/res/img/ic-switch-on.png \
+  qt/MANTIScoin/res/img/img-qr-test.png \
+  qt/MANTIScoin/res/img/ic-check-box.png \
+  qt/MANTIScoin/res/img/ic-check-box-dark-active.png \
+  qt/MANTIScoin/res/img/ic-check-box-indeterminate.png \
+  qt/MANTIScoin/res/img/ic-check-box-liliac-indeterminate.png \
+  qt/MANTIScoin/res/img/ic-label-liliac.png \
+  qt/MANTIScoin/res/img/ic-transaction-warning.png \
+  qt/MANTIScoin/res/img/ic-transaction-mint.png \
+  qt/MANTIScoin/res/img/ic-transaction-mint-inactive.png \
+  qt/MANTIScoin/res/img/ic-check-cold-staking.png \
+  qt/MANTIScoin/res/img/ic-check-cold-staking-off.png \
+  qt/MANTIScoin/res/img/ic-check-cold-staking-enabled.png \
+  qt/MANTIScoin/res/img/dark/ic-transaction-cs-contract.png \
+  qt/MANTIScoin/res/img/dark/ic-transaction-cs-contract-inactive.png \
+  qt/MANTIScoin/res/img/img-qr.png \
+  qt/MANTIScoin/res/img/ic-check-connect-off.png \
+  qt/MANTIScoin/res/img/ic-check-tor-off.png \
+  qt/MANTIScoin/res/img/ic-check-tor.png \
+  qt/MANTIScoin/res/img/ic-label.png \
+  qt/MANTIScoin/res/img/ic-transaction-received.png \
+  qt/MANTIScoin/res/img/dark/ic-transaction-received.png \
+  qt/MANTIScoin/res/img/dark/ic-transaction-warning.png \
+  qt/MANTIScoin/res/img/dark/ic-transaction-mint.png \
+  qt/MANTIScoin/res/img/dark/ic-transaction-mint-inactive.png \
+  qt/MANTIScoin/res/img/ic-transaction-received-inactive.png \
+  qt/MANTIScoin/res/img/dark/ic-transaction-received-inactive.png \
+  qt/MANTIScoin/res/img/img-welcome-step1.png \
+  qt/MANTIScoin/res/img/ic-check-connect.png \
+  qt/MANTIScoin/res/img/ic-menu-hover.png \
+  qt/MANTIScoin/res/img/ic-transaction-sent.png \
+  qt/MANTIScoin/res/img/ic-transaction-sent-inactive.png \
+  qt/MANTIScoin/res/img/dark/ic-transaction-sent.png \
+  qt/MANTIScoin/res/img/dark/ic-transaction-sent-inactive.png \
+  qt/MANTIScoin/res/img/img-welcome-step2.png \
+  qt/MANTIScoin/res/img/ic-check-dark.png \
+  qt/MANTIScoin/res/img/ic-mint.png \
+  qt/MANTIScoin/res/img/ic-transaction-staked.png \
+  qt/MANTIScoin/res/img/ic-transaction-staked-inactive.png \
+  qt/MANTIScoin/res/img/dark/ic-transaction-staked.png \
+  qt/MANTIScoin/res/img/dark/ic-transaction-staked-inactive.png \
+  qt/MANTIScoin/res/img/img-welcome-step3.png \
+  qt/MANTIScoin/res/img/ic-check-liliac-on.png \
+  qt/MANTIScoin/res/img/ic-nav-address-active.png \
+  qt/MANTIScoin/res/img/ic-unlock-staking.png \
+  qt/MANTIScoin/res/img/img-welcome-step4.png \
+  qt/MANTIScoin/res/img/ic-check-locked-off.png \
+  qt/MANTIScoin/res/img/ic-nav-address-hover.png \
+  qt/MANTIScoin/res/img/ic-update-liliac.png \
+  qt/MANTIScoin/res/img/ic-arrow-drop-down-purple.png \
+  qt/MANTIScoin/res/img/ic-arrow-drop-up-purple.png \
+  qt/MANTIScoin/res/img/ic-check-liliac-indeterminate.png \
+  qt/MANTIScoin/res/img/ic-check-box-liliac-indeterminate.png \
+  qt/MANTIScoin/res/img/ic-transaction-stake-delegated.png \
+  qt/MANTIScoin/res/img/ic-transaction-stake-delegated-inactive.png \
+  qt/MANTIScoin/res/img/ic-transaction-stake-hot.png \
+  qt/MANTIScoin/res/img/ic-transaction-stake-hot-inactive.png \
+  qt/MANTIScoin/res/img/dark/ic-transaction-stake-hot.png \
+  qt/MANTIScoin/res/img/dark/ic-transaction-stake-hot-inactive.png \
+  qt/MANTIScoin/res/img/dark/ic-transaction-stake-delegated.png \
+  qt/MANTIScoin/res/img/dark/ic-transaction-stake-delegated-inactive.png \
+  qt/MANTIScoin/res/img/ic-transaction-cs-contract.png \
+  qt/MANTIScoin/res/img/ic-transaction-cs-contract-inactive.png \
+  qt/MANTIScoin/res/img/ic-check-box-indeterminate.png \
+  qt/MANTIScoin/res/img/ani-loading-dark.gif \
+  qt/MANTIScoin/res/img/ani-loading.gif
+
+
+
+BITCOIN_QT_BASE_CPP = \
+  qt/bantablemodel.cpp \
+  qt/bitcoinaddressvalidator.cpp \
+  qt/MANTIScoin/MANTIScoingui.cpp \
+  qt/bitcoinunits.cpp \
+  qt/clientmodel.cpp \
+  qt/csvmodelwriter.cpp \
+  qt/guiutil.cpp \
+  qt/intro.cpp \
+  qt/networkstyle.cpp \
+  qt/notificator.cpp \
+  qt/optionsdialog.cpp \
+  qt/optionsmodel.cpp \
+  qt/peertablemodel.cpp \
+  qt/platformstyle.cpp \
+  qt/qvalidatedlineedit.cpp \
+  qt/qvaluecombobox.cpp \
+  qt/rpcconsole.cpp \
+  qt/trafficgraphwidget.cpp \
+  qt/utilitydialog.cpp
+
+BITCOIN_QT_WINDOWS_CPP = qt/winshutdownmonitor.cpp
+
+BITCOIN_QT_WALLET_CPP = \
+  qt/addressbookpage.cpp \
+  qt/addresstablemodel.cpp \
+  qt/askpassphrasedialog.cpp \
+  qt/coincontroldialog.cpp \
+  qt/coincontroltreewidget.cpp \
+  qt/editaddressdialog.cpp \
+  qt/openuridialog.cpp \
+  qt/paymentrequestplus.cpp \
+  qt/paymentserver.cpp \
+  qt/recentrequeststablemodel.cpp \
+  qt/transactionfilterproxy.cpp \
+  qt/transactionrecord.cpp \
+  qt/transactiontablemodel.cpp \
+  qt/walletmodel.cpp \
+  qt/walletmodeltransaction.cpp \
+  qt/MANTIScoin/loadingdialog.cpp \
+  qt/MANTIScoin/pwidget.cpp \
+  qt/MANTIScoin/focuseddialog.cpp \
+  qt/MANTIScoin/guitransactionsutils.cpp \
+  qt/MANTIScoin/snackbar.cpp \
+  qt/MANTIScoin/navmenuwidget.cpp \
+  qt/MANTIScoin/lockunlock.cpp \
+  qt/MANTIScoin/receivedialog.cpp \
+  qt/MANTIScoin/furabstractlistitemdelegate.cpp \
+  qt/MANTIScoin/txviewholder.cpp \
+  qt/MANTIScoin/qtutils.cpp \
+  qt/MANTIScoin/expandablebutton.cpp \
+  qt/MANTIScoin/topbar.cpp \
+  qt/MANTIScoin/txrow.cpp \
+  qt/MANTIScoin/addressholder.cpp \
+  qt/MANTIScoin/addressfilterproxymodel.cpp \
+  qt/MANTIScoin/dashboardwidget.cpp \
+  qt/MANTIScoin/addresslabelrow.cpp \
+  qt/MANTIScoin/contactdropdownrow.cpp \
+  qt/MANTIScoin/contactsdropdown.cpp \
+  qt/MANTIScoin/optionbutton.cpp \
+  qt/MANTIScoin/mninfodialog.cpp \
+  qt/MANTIScoin/coldstakingmodel.cpp \
+  qt/MANTIScoin/mnmodel.cpp \
+  qt/MANTIScoin/masternodewizarddialog.cpp \
+  qt/MANTIScoin/mnrow.cpp \
+  qt/MANTIScoin/masternodeswidget.cpp \
+  qt/MANTIScoin/myaddressrow.cpp \
+  qt/MANTIScoin/csrow.cpp \
+  qt/MANTIScoin/sendchangeaddressdialog.cpp \
+  qt/MANTIScoin/sendconfirmdialog.cpp \
+  qt/MANTIScoin/sendcustomfeedialog.cpp \
+  qt/MANTIScoin/sendchangeaddressdialog.cpp \
+  qt/MANTIScoin/sendmultirow.cpp \
+  qt/MANTIScoin/send.cpp \
+  qt/MANTIScoin/addnewaddressdialog.cpp \
+  qt/MANTIScoin/addnewcontactdialog.cpp \
+  qt/MANTIScoin/requestdialog.cpp \
+  qt/MANTIScoin/receivewidget.cpp \
+  qt/MANTIScoin/tooltipmenu.cpp \
+  qt/MANTIScoin/addresseswidget.cpp \
+  qt/MANTIScoin/defaultdialog.cpp \
+  qt/MANTIScoin/coldstakingwidget.cpp \
+  qt/MANTIScoin/settings/settingsbackupwallet.cpp \
+  qt/MANTIScoin/settings/settingsexportcsv.cpp \
+  qt/MANTIScoin/settings/settingsbittoolwidget.cpp \
+  qt/MANTIScoin/settings/settingsconsolewidget.cpp \
+  qt/MANTIScoin/settings/settingsdisplayoptionswidget.cpp \
+  qt/MANTIScoin/settings/settingsfaqwidget.cpp \
+  qt/MANTIScoin/settings/settingsinformationwidget.cpp \
+  qt/MANTIScoin/settings/settingsmainoptionswidget.cpp \
+  qt/MANTIScoin/settings/settingsmultisenddialog.cpp \
+  qt/MANTIScoin/settings/settingsmultisendwidget.cpp \
+  qt/MANTIScoin/settings/settingssignmessagewidgets.cpp \
+  qt/MANTIScoin/settings/settingswalletoptionswidget.cpp \
+  qt/MANTIScoin/settings/settingswalletrepairwidget.cpp \
+  qt/MANTIScoin/settings/settingswidget.cpp \
+  qt/MANTIScoin/welcomecontentwidget.cpp \
+  qt/MANTIScoin/splash.cpp
+
+
+BITCOIN_QT_CPP = $(BITCOIN_QT_BASE_CPP)
+if TARGET_WINDOWS
+BITCOIN_QT_CPP += $(BITCOIN_QT_WINDOWS_CPP)
+endif
+if ENABLE_WALLET
+BITCOIN_QT_CPP += $(BITCOIN_QT_WALLET_CPP)
+endif
+
+RES_IMAGES = \
+  qt/res/images/about.png
+
+RES_CSS = \
+  qt/MANTIScoin/res/css/style_dark.css \
+  qt/MANTIScoin/res/css/style_light.css
+
+BITCOIN_RC = qt/res/MANTIScoin-qt-res.rc
+
+BITCOIN_QT_INCLUDES = -I$(builddir)/qt -I$(srcdir)/qt -I$(srcdir)/qt/forms \
+  -I$(builddir)/qt/forms -DQT_NO_KEYWORDS
+
+qt_libbitcoinqt_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
+  $(QT_INCLUDES) $(QT_DBUS_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS) $(SVG_CFLAGS) $(CHARTS_CFLAGS)
+qt_libbitcoinqt_a_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
+qt_libbitcoinqt_a_OBJCXXFLAGS = $(AM_OBJCXXFLAGS) $(QT_PIE_FLAGS)
+
+qt_libbitcoinqt_a_SOURCES = $(BITCOIN_QT_CPP) $(BITCOIN_QT_H) $(QT_FORMS_UI) \
+  $(QT_QRC) $(QT_QRC_LOCALE) $(QT_TS) $(PROTOBUF_PROTO) $(RES_ICONS) $(RES_IMAGES) $(RES_CSS)
+
+nodist_qt_libbitcoinqt_a_SOURCES = $(QT_MOC_CPP) $(QT_MOC) $(PROTOBUF_CC) \
+  $(PROTOBUF_H) $(QT_QRC_CPP) $(QT_QRC_LOCALE_CPP)
+
+# forms/foo.h -> forms/ui_foo.h
+QT_FORMS_H=$(join $(dir $(QT_FORMS_UI)),$(addprefix ui_, $(notdir $(QT_FORMS_UI:.ui=.h))))
+
+# Most files will depend on the forms and moc files as includes. Generate them
+# before anything else.
+$(QT_MOC): $(QT_FORMS_H)
+$(qt_libbitcoinqt_a_OBJECTS) $(qt_MANTIScoin_qt_OBJECTS) : | $(QT_MOC)
+
+#Generating these with a half-written protobuf header leads to wacky results.
+#This makes sure it's done.
+$(QT_MOC): $(PROTOBUF_H)
+$(QT_MOC_CPP): $(PROTOBUF_H)
+
+# MANTIScoin-qt binary #
+qt_MANTIScoin_qt_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
+  $(QT_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS) $(SVG_CFLAGS) $(CHARTS_CFLAGS)
+qt_MANTIScoin_qt_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
+
+qt_MANTIScoin_qt_SOURCES = qt/MANTIScoin.cpp
+if TARGET_DARWIN
+  qt_MANTIScoin_qt_SOURCES += $(BITCOIN_MM)
+endif
+if TARGET_WINDOWS
+  qt_MANTIScoin_qt_SOURCES += $(BITCOIN_RC)
+endif
+qt_MANTIScoin_qt_LDADD = qt/libbitcoinqt.a $(LIBBITCOIN_SERVER)
+if ENABLE_WALLET
+qt_MANTIScoin_qt_LDADD += $(LIBBITCOIN_UTIL) $(LIBBITCOIN_WALLET)
+endif
+if ENABLE_ZMQ
+qt_MANTIScoin_qt_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
+endif
+qt_MANTIScoin_qt_LDADD += $(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_CRYPTO) $(LIBUNIVALUE) $(LIBSAPLING) $(LIBRUSTZCASH) $(LIBZCASH_LIBS) $(LIBLEVELDB) $(LIBLEVELDB_SSE42) $(LIBMEMENV) \
+  $(BOOST_LIBS) $(QT_LIBS) $(QT_DBUS_LIBS) $(QR_LIBS) $(PROTOBUF_LIBS) $(SVG_LIBS) $(CHARTS_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(LIBSECP256K1) \
+  $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
+qt_MANTIScoin_qt_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+qt_MANTIScoin_qt_LIBTOOLFLAGS = $(AM_LIBTOOLFLAGS) --tag CXX
+
+#locale/foo.ts -> locale/foo.qm
+QT_QM=$(QT_TS:.ts=.qm)
+
+SECONDARY: $(QT_QM)
+
+$(srcdir)/qt/MANTIScoinstrings.cpp: $(libbitcoin_server_a_SOURCES) $(libbitcoin_wallet_a_SOURCES) $(libbitcoin_common_a_SOURCES) $(libbitcoin_zmq_a_SOURCES) $(libbitcoin_util_a_SOURCES)
+	@test -n $(XGETTEXT) || echo "xgettext is required for updating translations"
+	$(AM_V_GEN) cd $(srcdir); XGETTEXT=$(XGETTEXT) PACKAGE_NAME="$(PACKAGE_NAME)" $(PYTHON) ../share/qt/extract_strings_qt.py $^
+
+translate: $(srcdir)/qt/MANTIScoinstrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(BITCOIN_QT_BASE_CPP) qt/MANTIScoin.cpp $(BITCOIN_QT_WINDOWS_CPP) $(BITCOIN_QT_WALLET_CPP) $(BITCOIN_QT_H) $(BITCOIN_MM)
+	@test -n $(LUPDATE) || echo "lupdate is required for updating translations"
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LUPDATE) $^ -locations relative -no-obsolete -ts $(srcdir)/qt/locale/MANTIScoin_en.ts
+
+$(QT_QRC_LOCALE_CPP): $(QT_QRC_LOCALE) $(QT_QM)
+	@test -f $(RCC)
+	@cp -f $< $(@D)/temp_$(<F)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name MANTIScoin_locale $(@D)/temp_$(<F) | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+	@rm $(@D)/temp_$(<F)
+
+$(QT_QRC_CPP): $(QT_QRC) $(QT_FORMS_H) $(RES_ICONS) $(RES_IMAGES) $(RES_CSS) $(PROTOBUF_H)
+	@test -f $(RCC)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name MANTIScoin $< | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+
+CLEAN_QT = $(nodist_qt_libbitcoinqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda qt/*.gcno qt/temp_MANTIScoin_locale.qrc
+
+CLEANFILES += $(CLEAN_QT)
+
+MANTIScoin_qt_clean: FORCE
+	rm -f $(CLEAN_QT) $(qt_libbitcoinqt_a_OBJECTS) $(qt_MANTIScoin_qt_OBJECTS) qt/MANTIScoin-qt$(EXEEXT) $(LIBBITCOINQT)
+
+MANTIScoin_qt : qt/MANTIScoin-qt$(EXEEXT)
+
+ui_%.h: %.ui
+	@test -f $(UIC)
+	@$(MKDIR_P) $(@D)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(UIC) -o $@ $< || (echo "Error creating $@"; false)
+
+%.moc: %.cpp
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(MOC) $(DEFAULT_INCLUDES) $(QT_INCLUDES) $(MOC_DEFS) $< | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+
+moc_%.cpp: %.h
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(MOC) $(DEFAULT_INCLUDES) $(QT_INCLUDES) $(MOC_DEFS) $< | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+
+%.qm: %.ts
+	@test -f $(LRELEASE)
+	@$(MKDIR_P) $(@D)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LRELEASE) -silent $< -qm $@

@@ -1,0 +1,81 @@
+policy_module(MANTIScoin, 1.100.1)
+
+########################################
+#
+# Declarations
+#
+
+type MANTIScoin_t;
+type MANTIScoin_exec_t;
+init_daemon_domain(MANTIScoin_t, MANTIScoin_exec_t)
+
+permissive MANTIScoin_t;
+
+type MANTIScoin_initrc_exec_t;
+init_script_file(MANTIScoin_initrc_exec_t)
+
+type MANTIScoin_conf_t;
+files_type(MANTIScoin_conf_t)
+
+type MANTIScoin_var_lib_t;
+files_type(MANTIScoin_var_lib_t)
+
+type MANTIScoin_var_run_t;
+files_type(MANTIScoin_var_run_t)
+
+type MANTIScoin_port_t;
+corenet_port(MANTIScoin_port_t)
+
+########################################
+#
+# MANTIScoin local policy
+#
+allow MANTIScoin_t self:process { fork };
+
+allow MANTIScoin_t self:fifo_file rw_fifo_file_perms;
+allow MANTIScoin_t self:unix_stream_socket create_stream_socket_perms;
+
+manage_dirs_pattern(MANTIScoin_t, MANTIScoin_conf_t, MANTIScoin_conf_t)
+manage_files_pattern(MANTIScoin_t, MANTIScoin_conf_t, MANTIScoin_conf_t)
+
+manage_dirs_pattern(MANTIScoin_t, MANTIScoin_var_lib_t, MANTIScoin_var_lib_t)
+manage_files_pattern(MANTIScoin_t, MANTIScoin_var_lib_t, MANTIScoin_var_lib_t)
+files_var_lib_filetrans(MANTIScoin_t, MANTIScoin_var_lib_t, { dir file })
+
+manage_dirs_pattern(MANTIScoin_t, MANTIScoin_var_run_t, MANTIScoin_var_run_t)
+manage_files_pattern(MANTIScoin_t, MANTIScoin_var_run_t, MANTIScoin_var_run_t)
+
+sysnet_dns_name_resolve(MANTIScoin_t)
+corenet_all_recvfrom_unlabeled(MANTIScoin_t)
+
+allow MANTIScoin_t self:tcp_socket create_stream_socket_perms;
+corenet_tcp_sendrecv_generic_if(MANTIScoin_t)
+corenet_tcp_sendrecv_generic_node(MANTIScoin_t)
+corenet_tcp_sendrecv_all_ports(MANTIScoin_t)
+corenet_tcp_bind_generic_node(MANTIScoin_t)
+
+gen_require(`
+    type MANTIScoin_port_t;
+')
+allow MANTIScoin_t MANTIScoin_port_t:tcp_socket name_bind;
+
+gen_require(`
+    type MANTIScoin_port_t;
+')
+allow MANTIScoin_t MANTIScoin_port_t:tcp_socket name_connect;
+
+domain_use_interactive_fds(MANTIScoin_t)
+
+files_read_etc_files(MANTIScoin_t)
+
+miscfiles_read_localization(MANTIScoin_t)
+
+sysnet_dns_name_resolve(MANTIScoin_t)
+
+allow MANTIScoin_t MANTIScoin_exec_t:file execute_no_trans;
+allow MANTIScoin_t self:process setsched;
+corecmd_exec_ls(MANTIScoin_t)
+corenet_tcp_connect_http_port(MANTIScoin_t)
+dev_read_urand(MANTIScoin_t)
+fs_getattr_xattr_fs(MANTIScoin_t)
+kernel_read_system_state(MANTIScoin_t)

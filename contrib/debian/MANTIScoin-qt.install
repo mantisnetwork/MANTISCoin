@@ -1,0 +1,6 @@
+usr/local/bin/MANTIScoin-qt usr/bin
+share/pixmaps/MANTIScoin32.xpm usr/share/pixmaps
+share/pixmaps/MANTIScoin16.xpm usr/share/pixmaps
+share/pixmaps/MANTIScoin128.png usr/share/pixmaps
+debian/MANTIScoin-qt.desktop usr/share/applications
+debian/MANTIScoin-qt.protocol usr/share/kde4/services/
